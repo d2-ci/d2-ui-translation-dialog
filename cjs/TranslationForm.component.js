@@ -66,18 +66,24 @@ var _camelCaseToUnderscores2 = _interopRequireDefault(_camelCaseToUnderscores);
 
 var _Observable = require('rxjs/Observable');
 
+var _Store = require('@dhis2/d2-ui-core/build/es/store/Store');
+
+var _Store2 = _interopRequireDefault(_Store);
+
+var _CircularProgress = require('@material-ui/core/CircularProgress');
+
+var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
 var _LocaleSelector = require('./LocaleSelector.component');
 
 var _LocaleSelector2 = _interopRequireDefault(_LocaleSelector);
 
 var _translationForm = require('./translationForm.actions');
 
-var _d2UiCore = require('@dhis2/d2-ui-core');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getTranslationFormData(model) {
-    var translationStore = _d2UiCore.Store.create();
+    var translationStore = _Store2.default.create();
 
     (0, _translationForm.getTranslationsForModel)(model).subscribe(function (translations) {
         translationStore.setState(translations);
@@ -103,7 +109,7 @@ var LoadingDataElement = function LoadingDataElement() {
     return _react2.default.createElement(
         'div',
         { style: { textAlign: 'center', minHeight: 350 } },
-        _react2.default.createElement(_d2UiCore.CircularProgress, { mode: 'indeterminate' })
+        _react2.default.createElement(_CircularProgress2.default, null)
     );
 };
 

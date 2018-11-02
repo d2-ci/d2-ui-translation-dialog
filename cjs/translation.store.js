@@ -4,6 +4,10 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _d2UiCore = require('@dhis2/d2-ui-core');
+var _Store = require('@dhis2/d2-ui-core/build/es/store/Store');
 
-exports.default = _d2UiCore.Store.create();
+var _Store2 = _interopRequireDefault(_Store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Store2.default.create();

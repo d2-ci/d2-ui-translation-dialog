@@ -20,7 +20,9 @@ var _d = require('d2');
 
 var _Observable = require('rxjs/Observable');
 
-var _d2UiCore = require('@dhis2/d2-ui-core');
+var _Action = require('@dhis2/d2-ui-core/build/es/action/Action');
+
+var _Action2 = _interopRequireDefault(_Action);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -64,7 +66,7 @@ function getTranslationsForModel(model) {
     });
 }
 
-var saveTranslations = exports.saveTranslations = _d2UiCore.Action.create('saveTranslations');
+var saveTranslations = exports.saveTranslations = _Action2.default.create('saveTranslations');
 
 saveTranslations.subscribe(function (_ref) {
     var _ref$data = (0, _slicedToArray3.default)(_ref.data, 2),
