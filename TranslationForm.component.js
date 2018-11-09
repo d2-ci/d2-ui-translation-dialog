@@ -161,7 +161,7 @@ var TranslationForm = function (_Component) {
                 React.createElement(
                     Button,
                     {
-                        variant: 'contained',
+                        color: 'primary',
                         onClick: this.props.onCancel
                     },
                     this.getTranslation('cancel')
