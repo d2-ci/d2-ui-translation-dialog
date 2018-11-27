@@ -62,7 +62,10 @@ var TranslationDialog = function (_Component) {
         value: function render() {
             return React.createElement(
                 Dialog,
-                _extends({ onClose: this.closeDialog, PaperProps: { style: { width: '75%', maxWidth: '768px' } } }, this.muiDialogProps()),
+                _extends({
+                    onClose: this.closeDialog,
+                    maxWidth: 'lg'
+                }, this.muiDialogProps()),
                 React.createElement(
                     DialogTitle,
                     { id: 'form-dialog-title' },
@@ -81,6 +84,10 @@ var TranslationDialog = function (_Component) {
 
     return TranslationDialog;
 }(Component);
+
+TranslationDialog.defaultProps = {
+    fieldsToTranslate: []
+};
 
 TranslationDialog.propTypes = {
     objectToTranslate: PropTypes.shape({
