@@ -262,7 +262,7 @@ var WithObservableState = function (_Component2) {
             this.disposable = this.props.stateSource$.subscribe(function (state) {
                 return _this5.setState(state);
             }, function (error) {
-                return console.log.error(error);
+                return console.error(error);
             });
         }
     }, {
