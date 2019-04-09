@@ -1,18 +1,69 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import _extends from 'babel-runtime/helpers/extends';
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
-import React from 'react';
-import PropTypes from 'prop-types';
-import Select from 'react-select';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.LocaleSelector = undefined;
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactSelect = require('react-select');
+
+var _reactSelect2 = _interopRequireDefault(_reactSelect);
+
+var _styles = require('@material-ui/core/styles');
+
+var _Typography = require('@material-ui/core/Typography');
+
+var _Typography2 = _interopRequireDefault(_Typography);
+
+var _TextField = require('@material-ui/core/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _Paper = require('@material-ui/core/Paper');
+
+var _Paper2 = _interopRequireDefault(_Paper);
+
+var _MenuItem = require('@material-ui/core/MenuItem');
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var styles = function styles(theme) {
     return {
@@ -47,9 +98,8 @@ var styles = function styles(theme) {
 
 var inputComponent = function inputComponent(_ref) {
     var inputRef = _ref.inputRef,
-        props = _objectWithoutProperties(_ref, ['inputRef']);
-
-    return React.createElement('div', _extends({ ref: inputRef }, props));
+        props = (0, _objectWithoutProperties3.default)(_ref, ['inputRef']);
+    return _react2.default.createElement('div', (0, _extends3.default)({ ref: inputRef }, props));
 };
 
 var Control = function Control(_ref2) {
@@ -57,11 +107,11 @@ var Control = function Control(_ref2) {
         innerRef = _ref2.innerRef,
         innerProps = _ref2.innerProps,
         children = _ref2.children;
-    return React.createElement(TextField, _extends({
+    return _react2.default.createElement(_TextField2.default, (0, _extends3.default)({
         fullWidth: true,
         InputProps: {
             inputComponent: inputComponent,
-            inputProps: _extends({
+            inputProps: (0, _extends3.default)({
                 className: selectProps.classes.input,
                 inputRef: innerRef,
                 children: children
@@ -75,9 +125,9 @@ var Option = function Option(_ref3) {
         isFocused = _ref3.isFocused,
         innerProps = _ref3.innerProps,
         children = _ref3.children;
-    return React.createElement(
-        MenuItem,
-        _extends({
+    return _react2.default.createElement(
+        _MenuItem2.default,
+        (0, _extends3.default)({
             buttonRef: innerRef,
             selected: isFocused,
             component: 'div'
@@ -90,9 +140,9 @@ var Placeholder = function Placeholder(_ref4) {
     var selectProps = _ref4.selectProps,
         innerProps = _ref4.innerProps,
         children = _ref4.children;
-    return React.createElement(
-        Typography,
-        _extends({
+    return _react2.default.createElement(
+        _Typography2.default,
+        (0, _extends3.default)({
             color: 'textSecondary',
             className: selectProps.classes.placeholder
         }, innerProps),
@@ -103,7 +153,7 @@ var Placeholder = function Placeholder(_ref4) {
 var ValueContainer = function ValueContainer(_ref5) {
     var selectProps = _ref5.selectProps,
         children = _ref5.children;
-    return React.createElement(
+    return _react2.default.createElement(
         'div',
         { className: selectProps.classes.valueContainer },
         children
@@ -114,9 +164,9 @@ var Menu = function Menu(_ref6) {
     var selectProps = _ref6.selectProps,
         innerProps = _ref6.innerProps,
         children = _ref6.children;
-    return React.createElement(
-        Paper,
-        _extends({ square: true, className: selectProps.classes.paper }, innerProps),
+    return _react2.default.createElement(
+        _Paper2.default,
+        (0, _extends3.default)({ square: true, className: selectProps.classes.paper }, innerProps),
         children
     );
 };
@@ -129,13 +179,13 @@ var components = {
     ValueContainer: ValueContainer
 };
 
-export var LocaleSelector = function (_React$Component) {
-    _inherits(LocaleSelector, _React$Component);
+var LocaleSelector = exports.LocaleSelector = function (_React$Component) {
+    (0, _inherits3.default)(LocaleSelector, _React$Component);
 
     function LocaleSelector(props, context) {
-        _classCallCheck(this, LocaleSelector);
+        (0, _classCallCheck3.default)(this, LocaleSelector);
 
-        var _this = _possibleConstructorReturn(this, (LocaleSelector.__proto__ || _Object$getPrototypeOf(LocaleSelector)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (LocaleSelector.__proto__ || (0, _getPrototypeOf2.default)(LocaleSelector)).call(this, props, context));
 
         _this.mappedItem = function (item) {
             return {
@@ -166,16 +216,16 @@ export var LocaleSelector = function (_React$Component) {
         return _this;
     }
 
-    _createClass(LocaleSelector, [{
+    (0, _createClass3.default)(LocaleSelector, [{
         key: 'render',
         value: function render() {
             var classes = this.props.classes;
 
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: classes.root },
-                React.createElement(Select, {
+                _react2.default.createElement(_reactSelect2.default, {
                     classes: classes,
                     options: this.getSuggestions(),
                     components: components,
@@ -186,18 +236,17 @@ export var LocaleSelector = function (_React$Component) {
             );
         }
     }]);
-
     return LocaleSelector;
-}(React.Component);
+}(_react2.default.Component);
 
 LocaleSelector.propTypes = {
-    classes: PropTypes.object.isRequired,
-    locales: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        locale: PropTypes.string.isRequired
+    classes: _propTypes2.default.object.isRequired,
+    locales: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+        name: _propTypes2.default.string.isRequired,
+        locale: _propTypes2.default.string.isRequired
     })).isRequired,
-    onChange: PropTypes.func.isRequired,
-    currentLocale: PropTypes.string
+    onChange: _propTypes2.default.func.isRequired,
+    currentLocale: _propTypes2.default.string
 };
 
 LocaleSelector.defaultProps = {
@@ -205,7 +254,7 @@ LocaleSelector.defaultProps = {
 };
 
 LocaleSelector.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
-export default withStyles(styles, { withTheme: true })(LocaleSelector);
+exports.default = (0, _styles.withStyles)(styles, { withTheme: true })(LocaleSelector);

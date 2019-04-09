@@ -1,12 +1,34 @@
-import _slicedToArray from 'babel-runtime/helpers/slicedToArray';
-import _Promise from 'babel-runtime/core-js/promise';
-import { getInstance } from 'd2';
-import { Observable } from 'rxjs';
-import Action from '@dhis2/d2-ui-core/action/Action';
+'use strict';
 
-export function getLocales() {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.saveTranslations = undefined;
+
+var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
+
+var _promise = require('babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
+exports.getLocales = getLocales;
+exports.getTranslationsForModel = getTranslationsForModel;
+
+var _d = require('d2');
+
+var _rxjs = require('rxjs');
+
+var _Action = require('@dhis2/d2-ui-core/action/Action');
+
+var _Action2 = _interopRequireDefault(_Action);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getLocales() {
     if (!getLocales.localePromise) {
-        getLocales.localePromise = getInstance().then(function (d2) {
+        getLocales.localePromise = (0, _d.getInstance)().then(function (d2) {
             var api = d2.Api.getApi();
 
             return api.get('locales/db');
@@ -17,7 +39,7 @@ export function getLocales() {
         });
     }
 
-    return Observable.fromPromise(getLocales.localePromise);
+    return _rxjs.Observable.fromPromise(getLocales.localePromise);
 }
 
 function getModelHref(model) {
@@ -28,15 +50,15 @@ function getModelHref(model) {
     return model.modelDefinition.apiEndpoint + '/' + model.id;
 }
 
-export function getTranslationsForModel(model) {
-    return Observable.of(model).flatMap(function (m) {
+function getTranslationsForModel(model) {
+    return _rxjs.Observable.of(model).flatMap(function (m) {
         var modelDefinition = m.modelDefinition;
 
         if (!modelDefinition && !modelDefinition.name) {
-            return _Promise.reject(new Error('Can not find modelDefinition for ' + m.id));
+            return _promise2.default.reject(new Error('Can not find modelDefinition for ' + m.id));
         }
 
-        return getInstance().then(function (d2) {
+        return (0, _d.getInstance)().then(function (d2) {
             var api = d2.Api.getApi();
 
             return api.get(getModelHref(m) + '/translations');
@@ -44,10 +66,10 @@ export function getTranslationsForModel(model) {
     });
 }
 
-export var saveTranslations = Action.create('saveTranslations');
+var saveTranslations = exports.saveTranslations = _Action2.default.create('saveTranslations');
 
 saveTranslations.subscribe(function (_ref) {
-    var _ref$data = _slicedToArray(_ref.data, 2),
+    var _ref$data = (0, _slicedToArray3.default)(_ref.data, 2),
         model = _ref$data[0],
         translations = _ref$data[1],
         complete = _ref.complete,
@@ -55,7 +77,7 @@ saveTranslations.subscribe(function (_ref) {
 
     var translationHref = getModelHref(model) + '/translations';
 
-    getInstance().then(function (d2) {
+    (0, _d.getInstance)().then(function (d2) {
         var api = d2.Api.getApi();
 
         api.update(translationHref, { translations: translations }, { dataType: 'text' }).then(function () {

@@ -1,37 +1,100 @@
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
-import _extends from 'babel-runtime/helpers/extends';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import _Object$assign from 'babel-runtime/core-js/object/assign';
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import camelCaseToUnderscores from 'd2-utilizr/lib/camelCaseToUnderscores';
-import { Observable } from 'rxjs';
-import Store from '@dhis2/d2-ui-core/store/Store';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import LocaleSelector from './LocaleSelector.component';
-import { getLocales, getTranslationsForModel, saveTranslations } from './translationForm.actions';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _assign = require('babel-runtime/core-js/object/assign');
+
+var _assign2 = _interopRequireDefault(_assign);
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _TextField = require('@material-ui/core/TextField');
+
+var _TextField2 = _interopRequireDefault(_TextField);
+
+var _Button = require('@material-ui/core/Button');
+
+var _Button2 = _interopRequireDefault(_Button);
+
+var _DialogActions = require('@material-ui/core/DialogActions');
+
+var _DialogActions2 = _interopRequireDefault(_DialogActions);
+
+var _DialogContent = require('@material-ui/core/DialogContent');
+
+var _DialogContent2 = _interopRequireDefault(_DialogContent);
+
+var _camelCaseToUnderscores = require('d2-utilizr/lib/camelCaseToUnderscores');
+
+var _camelCaseToUnderscores2 = _interopRequireDefault(_camelCaseToUnderscores);
+
+var _rxjs = require('rxjs');
+
+var _Store = require('@dhis2/d2-ui-core/store/Store');
+
+var _Store2 = _interopRequireDefault(_Store);
+
+var _CircularProgress = require('@material-ui/core/CircularProgress');
+
+var _CircularProgress2 = _interopRequireDefault(_CircularProgress);
+
+var _LocaleSelector = require('./LocaleSelector.component');
+
+var _LocaleSelector2 = _interopRequireDefault(_LocaleSelector);
+
+var _translationForm = require('./translationForm.actions');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getTranslationFormData(model) {
-    var translationStore = Store.create();
+    var translationStore = _Store2.default.create();
 
-    getTranslationsForModel(model).subscribe(function (translations) {
+    (0, _translationForm.getTranslationsForModel)(model).subscribe(function (translations) {
         translationStore.setState(translations);
     });
 
-    return Observable.combineLatest(getLocales(), translationStore, function () {
+    return _rxjs.Observable.combineLatest((0, _translationForm.getLocales)(), translationStore, function () {
         for (var _len = arguments.length, data = Array(_len), _key = 0; _key < _len; _key++) {
             data[_key] = arguments[_key];
         }
 
-        return _Object$assign.apply(Object, [{
+        return _assign2.default.apply(Object, [{
             objectToTranslate: model,
             setTranslations: function setTranslations(translations) {
                 translationStore.setState({
@@ -43,20 +106,20 @@ function getTranslationFormData(model) {
 }
 
 var LoadingDataElement = function LoadingDataElement() {
-    return React.createElement(
+    return _react2.default.createElement(
         'div',
         { style: { textAlign: 'center', minHeight: 350 } },
-        React.createElement(CircularProgress, null)
+        _react2.default.createElement(_CircularProgress2.default, null)
     );
 };
 
 var TranslationForm = function (_Component) {
-    _inherits(TranslationForm, _Component);
+    (0, _inherits3.default)(TranslationForm, _Component);
 
     function TranslationForm(props, context) {
-        _classCallCheck(this, TranslationForm);
+        (0, _classCallCheck3.default)(this, TranslationForm);
 
-        var _this = _possibleConstructorReturn(this, (TranslationForm.__proto__ || _Object$getPrototypeOf(TranslationForm)).call(this, props, context));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (TranslationForm.__proto__ || (0, _getPrototypeOf2.default)(TranslationForm)).call(this, props, context));
 
         _this.state = {
             loading: true,
@@ -74,7 +137,7 @@ var TranslationForm = function (_Component) {
         _this.setValue = function (property, event) {
             var newTranslations = [].concat(_this.props.translations);
             var translation = newTranslations.find(function (t) {
-                return t.locale === _this.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(property);
+                return t.locale === _this.state.currentSelectedLocale && t.property.toLowerCase() === (0, _camelCaseToUnderscores2.default)(property);
             });
 
             if (translation) {
@@ -88,7 +151,7 @@ var TranslationForm = function (_Component) {
                 }
             } else {
                 translation = {
-                    property: camelCaseToUnderscores(property).toUpperCase(),
+                    property: (0, _camelCaseToUnderscores2.default)(property).toUpperCase(),
                     locale: _this.state.currentSelectedLocale,
                     value: event.target.value
                 };
@@ -100,7 +163,7 @@ var TranslationForm = function (_Component) {
         };
 
         _this.saveTranslations = function () {
-            saveTranslations(_this.props.objectToTranslate, _this.props.translations).subscribe(_this.props.onTranslationSaved, _this.props.onTranslationError);
+            (0, _translationForm.saveTranslations)(_this.props.objectToTranslate, _this.props.translations).subscribe(_this.props.onTranslationSaved, _this.props.onTranslationError);
         };
 
         var i18n = _this.context.d2.i18n;
@@ -108,13 +171,13 @@ var TranslationForm = function (_Component) {
         return _this;
     }
 
-    _createClass(TranslationForm, [{
+    (0, _createClass3.default)(TranslationForm, [{
         key: 'getTranslationValueFor',
         value: function getTranslationValueFor(fieldName) {
             var _this2 = this;
 
             var translation = this.props.translations.find(function (t) {
-                return t.locale === _this2.state.currentSelectedLocale && t.property.toLowerCase() === camelCaseToUnderscores(fieldName);
+                return t.locale === _this2.state.currentSelectedLocale && t.property.toLowerCase() === (0, _camelCaseToUnderscores2.default)(fieldName);
             });
 
             return translation ? translation.value : '';
@@ -127,13 +190,13 @@ var TranslationForm = function (_Component) {
             return this.props.fieldsToTranslate.filter(function (fieldName) {
                 return fieldName;
             }).map(function (fieldName) {
-                var labelPlaceholder = _this3.getTranslation(camelCaseToUnderscores(fieldName));
+                var labelPlaceholder = _this3.getTranslation((0, _camelCaseToUnderscores2.default)(fieldName));
                 var val = _this3.getTranslationValueFor(fieldName);
 
-                return React.createElement(
+                return _react2.default.createElement(
                     'div',
                     { key: fieldName },
-                    React.createElement(TextField, {
+                    _react2.default.createElement(_TextField2.default, {
                         placeholder: labelPlaceholder,
                         label: labelPlaceholder,
                         value: val,
@@ -144,7 +207,7 @@ var TranslationForm = function (_Component) {
                         onChange: _this3.setValue.bind(_this3, fieldName),
                         margin: 'normal'
                     }),
-                    React.createElement(
+                    _react2.default.createElement(
                         'div',
                         { style: { color: 'rgba(0,0,0,0.6)' } },
                         _this3.props.objectToTranslate[fieldName]
@@ -155,19 +218,19 @@ var TranslationForm = function (_Component) {
     }, {
         key: 'renderActionButtons',
         value: function renderActionButtons() {
-            return React.createElement(
-                DialogActions,
+            return _react2.default.createElement(
+                _DialogActions2.default,
                 null,
-                React.createElement(
-                    Button,
+                _react2.default.createElement(
+                    _Button2.default,
                     {
                         color: 'primary',
                         onClick: this.props.onCancel
                     },
                     this.getTranslation('cancel')
                 ),
-                React.createElement(
-                    Button,
+                _react2.default.createElement(
+                    _Button2.default,
                     {
                         variant: 'contained',
                         color: 'primary',
@@ -180,10 +243,10 @@ var TranslationForm = function (_Component) {
     }, {
         key: 'renderHelpText',
         value: function renderHelpText() {
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 null,
-                React.createElement(
+                _react2.default.createElement(
                     'p',
                     null,
                     this.getTranslation('select_a_locale_to_enter_translations_for_that_language')
@@ -194,19 +257,19 @@ var TranslationForm = function (_Component) {
         key: 'render',
         value: function render() {
             if (!this.props.locales && !this.props.translations) {
-                return React.createElement(LoadingDataElement, null);
+                return _react2.default.createElement(LoadingDataElement, null);
             }
 
-            return React.createElement(
-                Fragment,
+            return _react2.default.createElement(
+                _react.Fragment,
                 null,
-                React.createElement(
-                    DialogContent,
+                _react2.default.createElement(
+                    _DialogContent2.default,
                     null,
-                    React.createElement(
+                    _react2.default.createElement(
                         'div',
                         { style: { minHeight: 350 } },
-                        React.createElement(LocaleSelector, {
+                        _react2.default.createElement(_LocaleSelector2.default, {
                             classes: {},
                             currentLocale: this.state.currentSelectedLocale,
                             locales: this.props.locales,
@@ -219,21 +282,20 @@ var TranslationForm = function (_Component) {
             );
         }
     }]);
-
     return TranslationForm;
-}(Component);
+}(_react.Component);
 
 TranslationForm.propTypes = {
-    onTranslationSaved: PropTypes.func.isRequired,
-    onTranslationError: PropTypes.func.isRequired,
-    onCancel: PropTypes.func,
-    objectToTranslate: PropTypes.shape({
-        id: PropTypes.string.isRequired
+    onTranslationSaved: _propTypes2.default.func.isRequired,
+    onTranslationError: _propTypes2.default.func.isRequired,
+    onCancel: _propTypes2.default.func,
+    objectToTranslate: _propTypes2.default.shape({
+        id: _propTypes2.default.string.isRequired
     }),
-    locales: PropTypes.array,
-    translations: PropTypes.array,
-    setTranslations: PropTypes.func,
-    fieldsToTranslate: PropTypes.arrayOf(PropTypes.string)
+    locales: _propTypes2.default.array,
+    translations: _propTypes2.default.array,
+    setTranslations: _propTypes2.default.func,
+    fieldsToTranslate: _propTypes2.default.arrayOf(_propTypes2.default.string)
 };
 
 TranslationForm.defaultProps = {
@@ -242,19 +304,18 @@ TranslationForm.defaultProps = {
 };
 
 TranslationForm.contextTypes = {
-    d2: PropTypes.object
+    d2: _propTypes2.default.object
 };
 
 var WithObservableState = function (_Component2) {
-    _inherits(WithObservableState, _Component2);
+    (0, _inherits3.default)(WithObservableState, _Component2);
 
     function WithObservableState() {
-        _classCallCheck(this, WithObservableState);
-
-        return _possibleConstructorReturn(this, (WithObservableState.__proto__ || _Object$getPrototypeOf(WithObservableState)).apply(this, arguments));
+        (0, _classCallCheck3.default)(this, WithObservableState);
+        return (0, _possibleConstructorReturn3.default)(this, (WithObservableState.__proto__ || (0, _getPrototypeOf2.default)(WithObservableState)).apply(this, arguments));
     }
 
-    _createClass(WithObservableState, [{
+    (0, _createClass3.default)(WithObservableState, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             var _this5 = this;
@@ -273,22 +334,20 @@ var WithObservableState = function (_Component2) {
     }, {
         key: 'render',
         value: function render() {
-            return React.cloneElement(React.Children.only(this.props.children), _extends({}, this.state));
+            return _react2.default.cloneElement(_react2.default.Children.only(this.props.children), (0, _extends3.default)({}, this.state));
         }
     }]);
-
     return WithObservableState;
-}(Component);
+}(_react.Component);
 
 var TranslationFormWithData = function TranslationFormWithData(_ref) {
     var model = _ref.model,
-        props = _objectWithoutProperties(_ref, ['model']);
-
-    return React.createElement(
+        props = (0, _objectWithoutProperties3.default)(_ref, ['model']);
+    return _react2.default.createElement(
         WithObservableState,
         { stateSource$: getTranslationFormData(model) },
-        React.createElement(TranslationForm, props)
+        _react2.default.createElement(TranslationForm, props)
     );
 };
 
-export default TranslationFormWithData;
+exports.default = TranslationFormWithData;
